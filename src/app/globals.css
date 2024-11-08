@@ -19,3 +19,23 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.known-word {
+  @apply bg-green-100 dark:bg-green-900;
+}
+
+.translation-panel {
+  @apply p-6 h-full;
+}
+
+.chinese-text {
+  @apply text-2xl mb-4;
+}
+
+.pinyin-text {
+  @apply text-sm text-gray-600 dark:text-gray-400 mb-4;
+}
+
+.word-breakdown {
+  @apply space-y-2 text-sm;
+}
