@@ -25,7 +25,15 @@ body {
 }
 
 .translation-panel {
-  @apply p-6 h-full;
+  @apply p-6 h-full flex flex-col;
+}
+
+.history-container {
+  @apply flex flex-col flex-grow min-h-0;
+}
+
+.history-table-container {
+  @apply flex-grow overflow-y-auto;
 }
 
 .chinese-text {

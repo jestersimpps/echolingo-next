@@ -58,9 +58,9 @@ export default function TranslationHistory({ refreshTrigger = 0 }: TranslationHi
   }
 
   return (
-    <div>
+    <div className="history-container">
       <h2 className="text-xl font-bold mb-4">Translation History</h2>
-      <div className="overflow-x-auto">
+      <div className="history-table-container">
         <table className="w-full">
           <thead>
             <tr className="border-b dark:border-gray-700">
