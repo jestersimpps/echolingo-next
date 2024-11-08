@@ -19,7 +19,7 @@ export async function GET() {
     const { data: translations, error } = await supabase
       .from('translations')
       .select('*')
-      .eq('user_email', session.user.email)
+      .eq('email', session.user.email)
       .order('created_at', { ascending: false });
 
     if (error) throw error;
