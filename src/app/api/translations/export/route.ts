@@ -16,13 +16,24 @@ export async function GET() {
   }
 
   try {
-    const { data: translations, error } = await supabase
+    // First get the user's ID
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', session.user.email)
+      .single();
+
+    if (userError) throw userError;
+    if (!userData) throw new Error('User not found');
+
+    // Then get their translations
+    const { data: translations, error: translationsError } = await supabase
       .from('translations')
       .select('*')
-      .eq('user_id', session.user.email)
+      .eq('user_id', userData.id)
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (translationsError) throw translationsError;
 
     // Convert to CSV
     const headers = ['Date', 'English', 'Chinese', 'Pinyin'];
