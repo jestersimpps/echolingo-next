@@ -39,3 +39,27 @@ body {
 .word-breakdown {
   @apply space-y-2 text-sm;
 }
+
+.user-header {
+  @apply bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900;
+  @apply border-b border-gray-200 dark:border-gray-700;
+  @apply shadow-sm;
+}
+
+.user-header-content {
+  @apply max-w-7xl mx-auto flex justify-between items-center;
+  @apply px-6 py-4;
+}
+
+.user-email {
+  @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+  @apply flex items-center gap-2;
+}
+
+.signout-button {
+  @apply px-4 py-2 rounded-md text-sm font-medium;
+  @apply text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white;
+  @apply transition-colors duration-200;
+  @apply border border-gray-300 dark:border-gray-600;
+  @apply hover:bg-gray-50 dark:hover:bg-gray-700;
+}

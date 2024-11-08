@@ -8,14 +8,17 @@ interface UserHeaderProps {
 
 export default function UserHeader({ session }: UserHeaderProps) {
   return (
-    <div className="w-full p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <span className="text-sm">
-          Signed in as {session.user?.email}
+    <div className="user-header">
+      <div className="user-header-content">
+        <span className="user-email">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+          </svg>
+          {session.user?.email}
         </span>
         <button
           onClick={() => signOut()}
-          className="px-4 py-2 text-sm text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+          className="signout-button"
         >
           Sign Out
         </button>
