@@ -64,12 +64,13 @@ body {
   @apply flex items-center gap-2;
 }
 
-.signout-button {
+.header-button {
   @apply px-4 py-2 rounded-md text-sm font-medium;
   @apply text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white;
   @apply transition-colors duration-200;
   @apply border border-gray-300 dark:border-gray-600;
   @apply hover:bg-gray-50 dark:hover:bg-gray-700;
+  @apply flex items-center gap-2;
 }
 
 .pagination-select {
