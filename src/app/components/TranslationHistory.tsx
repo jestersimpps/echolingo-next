@@ -28,14 +28,19 @@ export default function TranslationHistory({ refreshTrigger = 0 }: TranslationHi
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [pageSize, setPageSize] = useState(10);
 
   useEffect(() => {
     fetchTranslations(currentPage);
-  }, [currentPage, refreshTrigger]);
+    // Reset to page 1 when page size changes
+    if (currentPage !== 1) {
+      setCurrentPage(1);
+    }
+  }, [currentPage, refreshTrigger, pageSize]);
 
   const fetchTranslations = async (page: number) => {
     try {
-      const response = await fetch(`/api/translations?page=${page}`);
+      const response = await fetch(`/api/translations?page=${page}&pageSize=${pageSize}`);
       if (!response.ok) throw new Error('Failed to fetch translations');
       
       const data: PaginatedResponse = await response.json();
@@ -72,22 +77,39 @@ export default function TranslationHistory({ refreshTrigger = 0 }: TranslationHi
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center gap-2 mt-4">
+      {/* Pagination Controls */}
+      <div className="pagination-controls">
         <button
           onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
           disabled={currentPage === 1}
-          className="px-3 py-1 rounded border dark:border-gray-700 disabled:opacity-50"
+          className="pagination-button"
         >
           Previous
         </button>
+        
+        <span className="flex items-center gap-2">
+          <span>Show</span>
+          <select
+            value={pageSize}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+            className="pagination-select"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+          <span>per page</span>
+        </span>
+
         <span className="px-3 py-1">
           Page {currentPage} of {totalPages}
         </span>
+        
         <button
           onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 rounded border dark:border-gray-700 disabled:opacity-50"
+          className="pagination-button"
         >
           Next
         </button>
