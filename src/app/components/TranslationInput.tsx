@@ -1,4 +1,5 @@
 'use client';
+/** @jsxImportSource react */
 import { useState } from 'react';
 import { translateText } from '../../utils/translation';
 import { TranslationResponse } from '../../types/translation';
